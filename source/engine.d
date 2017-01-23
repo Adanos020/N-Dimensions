@@ -18,7 +18,7 @@ import	pseudo3d.drawables.cuboid,
 struct Engine
 {
 private:
-	//Cuboid _cuboid;
+	Cuboid _cuboid;
 	Hypercuboid _hypercuboid;
 
 	Duration _totalDuration;
@@ -27,10 +27,10 @@ public:
 	///
 	void initialize()
 	{
-		//_cuboid = new Cuboid(Vector3f(100, 200, 400), Vector3f(0, 0, 1));
-		_hypercuboid = new Hypercuboid(Vector4f(350, 350, 350, 350), Vector4f(0, 0, 0, 0));
-		_hypercuboid.rotateXZ(10);
-		_hypercuboid.rotateYZ(10);
+		_cuboid = new Cuboid(Vector3f(350, 350, 350), Vector3f(0, 0, 0));
+		//_hypercuboid = new Hypercuboid(Vector4f(350, 350, 350, 350), Vector4f(0, 0, 0, 0));
+		//_hypercuboid.rotateXZ(10);
+		//_hypercuboid.rotateYZ(10);
 	}
 
 	///
@@ -53,13 +53,13 @@ public:
 		//_hypercuboid.rotateXY(delta.total!"usecs" * 0.0000001);
 		//_hypercuboid.rotateXZ(delta.total!"usecs" * 0.0000001);
 		//_hypercuboid.rotateYZ(delta.total!"usecs" * 0.0000001);
-		_hypercuboid.rotateXW(delta.total!"usecs" * 0.0000005);
+		//_hypercuboid.rotateXW(delta.total!"usecs" * 0.0000005);
 	}
 
 	///
 	void draw(in ref Window window)
 	{
-		//window.draw(_cuboid);
-		window.draw(_hypercuboid);
+		window.draw(_cuboid);
+		//window.draw(_hypercuboid);
 	}
 }

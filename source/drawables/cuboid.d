@@ -23,130 +23,23 @@ private:
 	Vector3f _position;
 	Vector3f _size;
 
-	Shape _vertices;
+	Vector3f[8] _vertices;
+	size_t[] _elements = [
+		0,	 1,		0,	 2,		0,	 4,		
+		1,	 3,		1,	 5,		2,	 3,		
+		2,	 6,		3,	 7,		4,	 5,		
+		4,	 6,		5,	 7,		6,	 7
+	];
+
+	Shape _shape;
 
 	void setVertices()
 	{
-		// front top
-		_vertices.getVertices[0].position = to2D(Vector3f(_position.x - _size.x / 2,
-														  _position.y - _size.y / 2,
-														  _position.z - _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-
-		_vertices.getVertices[1].position = to2D(Vector3f(_position.x + _size.x / 2,
-														  _position.y - _size.y / 2,
-														  _position.z - _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-		// front right
-		_vertices.getVertices[2].position = to2D(Vector3f(_position.x + _size.x / 2,
-														  _position.y - _size.y / 2,
-														  _position.z - _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-
-		_vertices.getVertices[3].position = to2D(Vector3f(_position.x + _size.x / 2,
-														  _position.y + _size.y / 2,
-														  _position.z - _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-		// front bottom
-		_vertices.getVertices[4].position = to2D(Vector3f(_position.x + _size.x / 2,
-														  _position.y + _size.y / 2,
-														  _position.z - _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-
-		_vertices.getVertices[5].position = to2D(Vector3f(_position.x - _size.x / 2,
-														  _position.y + _size.y / 2,
-														  _position.z - _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-		// front left
-		_vertices.getVertices[6].position = to2D(Vector3f(_position.x - _size.x / 2,
-														  _position.y - _size.y / 2,
-														  _position.z - _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-
-		_vertices.getVertices[7].position = to2D(Vector3f(_position.x - _size.x / 2,
-														  _position.y + _size.y / 2,
-														  _position.z - _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-		// left top
-		_vertices.getVertices[8].position = to2D(Vector3f(_position.x - _size.x / 2,
-														  _position.y - _size.y / 2,
-														  _position.z - _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-
-		_vertices.getVertices[9].position = to2D(Vector3f(_position.x - _size.x / 2,
-														  _position.y - _size.y / 2,
-														  _position.z + _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-		// left back
-		_vertices.getVertices[10].position = to2D(Vector3f(_position.x - _size.x / 2,
-														   _position.y - _size.y / 2,
-														   _position.z + _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-
-		_vertices.getVertices[11].position = to2D(Vector3f(_position.x - _size.x / 2,
-														   _position.y + _size.y / 2,
-														   _position.z + _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-		// left bottom
-		_vertices.getVertices[12].position = to2D(Vector3f(_position.x - _size.x / 2,
-														   _position.y + _size.y / 2,
-														   _position.z - _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-
-		_vertices.getVertices[13].position = to2D(Vector3f(_position.x - _size.x / 2,
-														   _position.y + _size.y / 2,
-														   _position.z + _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-		// back top
-		_vertices.getVertices[14].position = to2D(Vector3f(_position.x - _size.x / 2,
-														   _position.y - _size.y / 2,
-														   _position.z + _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-
-		_vertices.getVertices[15].position = to2D(Vector3f(_position.x + _size.x / 2,
-														   _position.y - _size.y / 2,
-														   _position.z + _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-		// back bottom
-		_vertices.getVertices[16].position = to2D(Vector3f(_position.x - _size.x / 2,
-														   _position.y + _size.y / 2,
-														   _position.z + _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-
-		_vertices.getVertices[17].position = to2D(Vector3f(_position.x + _size.x / 2,
-														   _position.y + _size.y / 2,
-														   _position.z + _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-		// right back
-		_vertices.getVertices[18].position = to2D(Vector3f(_position.x + _size.x / 2,
-														   _position.y + _size.y / 2,
-														   _position.z + _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-
-		_vertices.getVertices[19].position = to2D(Vector3f(_position.x + _size.x / 2,
-														   _position.y - _size.y / 2,
-														   _position.z + _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-		// right top
-		_vertices.getVertices[20].position = to2D(Vector3f(_position.x + _size.x / 2,
-														   _position.y - _size.y / 2,
-														   _position.z + _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-
-		_vertices.getVertices[21].position = to2D(Vector3f(_position.x + _size.x / 2,
-														   _position.y - _size.y / 2,
-														   _position.z - _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-		// right bottom
-		_vertices.getVertices[22].position = to2D(Vector3f(_position.x + _size.x / 2,
-														   _position.y + _size.y / 2,
-														   _position.z - _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
-
-		_vertices.getVertices[23].position = to2D(Vector3f(_position.x + _size.x / 2,
-														   _position.y + _size.y / 2,
-														   _position.z + _size.z / 2))
-											+ Vector2f(screenPosition.x, screenPosition.y);
+		foreach (i; 0 .. _elements.length - 1)
+		{
+			_shape.getVertices[i].position = to2D(_vertices[_elements[i++]]) + Vector2f(screenPosition.x, screenPosition.y);
+			_shape.getVertices[i].position = to2D(_vertices[_elements[ i ]]) + Vector2f(screenPosition.x, screenPosition.y);
+		}
 	}
 
 public:
@@ -156,20 +49,37 @@ public:
 		assert ((size.x > 0) || (size.y > 0) || (size.z > 0));
 	}
 	body {
-		_vertices = new Shape(Geometry.Lines);
+		_shape = new Shape(Geometry.Lines);
+
+		_size		= size;
+		_position	= position;
 
 		foreach (i; 0 .. 24)
 		{
-			_vertices.append(Vector2f(0, 0));
+			_shape.append(Vector2f(0, 0));
 		}
 
-		_vertices.setColor(Color4b.White);
-		_vertices.fill = Shape.Fill.Line;
+		size_t vertCount = 0;
+		foreach (x; [-1, 1])
+		{
+			foreach (y; [-1, 1])
+			{
+				foreach (z; [-1, 1])
+				{
+					_vertices[vertCount++] = Vector3f(	_position.x + x * (_size.x / 2),
+														_position.y + y * (_size.y / 2),
+														_position.z + z * (_size.z / 2));
+				}
+			}
+		}
 
-		this.size		= size;
-		this.position	= position;
+		setVertices();
 
-		foreach (i, vertex; _vertices.getVertices)
+		_shape.setColor(Color4b.White);
+		_shape.fill = Shape.Fill.Line;
+
+		static if (false)
+		foreach (i, vertex; _shape.getVertices)
 		{
 			writeln('v', i, ' ', vertex.position.x, ' ', vertex.position.y);
 		}
@@ -178,7 +88,7 @@ public:
 	///
 	override void draw(ref const Window window) nothrow @nogc
 	{
-		window.draw(_vertices);
+		window.draw(_shape);
 	}
 
 	@property
