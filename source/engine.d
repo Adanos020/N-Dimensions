@@ -54,6 +54,10 @@ public:
 		//_hypercuboid.rotateXZ(delta.total!"usecs" * 0.0000001);
 		//_hypercuboid.rotateYZ(delta.total!"usecs" * 0.0000001);
 		//_hypercuboid.rotateXW(delta.total!"usecs" * 0.0000005);
+
+		_cuboid.rotateXY(delta.total!"usecs" * 0.0000001);
+		_cuboid.rotateXZ(delta.total!"usecs" * 0.0000001);
+		_cuboid.rotateYZ(delta.total!"usecs" * 0.0000001);
 	}
 
 	///

@@ -1,6 +1,7 @@
 module pseudo3d.drawables.cuboid;
 
-import	std.stdio;
+import	std.math,
+		std.stdio;
 
 import	Dgame.Graphic.Color,
 		Dgame.Graphic.Drawable,
@@ -90,6 +91,43 @@ public:
 	{
 		window.draw(_shape);
 	}
+
+	/// Rotates a selected plane of the hypercuboid
+	void rotate(string axis)(float θ)
+		if (axis == "xy" ||
+			axis == "xz" ||
+			axis == "xw" ||
+			axis == "yz" ||
+			axis == "yw" ||
+			axis == "zw")
+	{
+		static if (axis == "xy")
+		foreach (ref vert; _vertices)
+		{
+			vert = Vector3f(vert.x * cos(θ) - vert.y * sin(θ),
+							vert.x * sin(θ) + vert.y * cos(θ),
+							vert.z);
+		}
+		else static if (axis == "xz")
+		foreach (ref vert; _vertices)
+		{
+			vert = Vector3f(vert.x * cos(θ) + vert.z * sin(θ),
+							vert.y,
+							vert.x);
+		}
+		else static if (axis == "yz")
+		foreach (ref vert; _vertices)
+		{
+			vert = Vector3f(vert.x,
+							vert.y * cos(θ) - vert.z * sin(θ),
+							vert.y);
+		}
+		setVertices();
+	}
+
+	alias rotateXY = rotate!"xy";
+	alias rotateXZ = rotate!"xz";
+	alias rotateYZ = rotate!"yz";
 
 	@property
 	{
