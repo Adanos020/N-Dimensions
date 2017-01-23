@@ -1,0 +1,12 @@
+{
+	"name": "n-dimensions",
+	"authors": [
+		"Adanos"
+	],
+	"dependencies": {
+		"dgame": "~>0.6.5"
+	},
+	"description": "Casting n-dimensional object into 2D surface.",
+	"copyright": "Copyright © 2017, Adanos",
+	"license": "public domain"
+}
