@@ -1,100 +1,100 @@
 module pseudo3d.app;
 
-import	std.stdio;
+import std.stdio;
 
-import	core.time;
+import core.time;
 
-import	Dgame.Graphic.Color,
+import Dgame.Graphic.Color,
 
-		Dgame.System.Keyboard,
+       Dgame.System.Keyboard,
 
-		Dgame.Window.Event,
-		Dgame.Window.Window;
+       Dgame.Window.Event,
+       Dgame.Window.Window;
 
-import	pseudo3d.engine;
+import pseudo3d.engine;
 
 ///
 struct App
 {
 private:
-	Window	_window		= void;
-	bool 	_running	= false;
+    Window _window  = void;
+    bool   _running = false;
 
-	Engine	_engine;
+    Engine _engine;
 
-	void pollEvents()
-	{
-		Event event;
-		while (_window.poll(&event))
-		{
-			switch (event.type)
-				with (Event.Type)
-			{
-				case Quit:
-				{
-					_running = false;
-				}
-				break;
+    void pollEvents()
+    {
+        Event event;
+        while (_window.poll(&event))
+        {
+            switch (event.type)
+                with (Event.Type)
+            {
+                case Quit:
+                {
+                    _running = false;
+                }
+                break;
 
-				case KeyDown:
-				{
-					if (event.keyboard.key == Keyboard.Code.Esc)
-					{
-						_running = false;
-					}
-				}
-				break;
+                case KeyDown:
+                {
+                    if (event.keyboard.key == Keyboard.Code.Esc)
+                    {
+                        _running = false;
+                    }
+                }
+                break;
 
-				default: break;
-			}
-		}
-	}
+                default: break;
+            }
+        }
+    }
 
-	void draw()
-	{
-		_window.clear();
-		_engine.draw(_window);
-		_window.display();
-	}
+    void draw()
+    {
+        _window.clear();
+        _engine.draw(_window);
+        _window.display();
+    }
 
 public:
-	///
-	void run()
-	{
-		_window = Window(1600, 900, "N-Dimensions");
-		_window.setClearColor(Color4b.Black);
+    ///
+    void run()
+    {
+        _window = Window(1600, 900, "N-Dimensions");
+        _window.setClearColor(Color4b.Black);
 
-		_engine.initialize();
+        _engine.initialize();
 
-		_running = true;
+        _running = true;
 
-		MonoTime clock;
-		auto start = clock.currTime;
-		auto prev = clock.currTime - start;
+        MonoTime clock;
+        auto start = clock.currTime;
+        auto prev = clock.currTime - start;
 
-		while (_running)
-		{
-			const auto now = clock.currTime - start;
-			auto delta = (now - prev);
-			prev = now;
+        while (_running)
+        {
+            const auto now = clock.currTime - start;
+            auto delta = (now - prev);
+            prev = now;
 
-			_engine.update(delta);
+            _engine.update(delta);
 
-			draw();
-			pollEvents();
-		}
-	}
+            draw();
+            pollEvents();
+        }
+    }
 }
 
 void main()
 {
-	App app;
-	try
-	{
-		app.run;
-	}
-	catch (Exception ex)
-	{
-		stderr.writeln(ex.msg);
-	}
+    App app;
+    try
+    {
+        app.run;
+    }
+    catch (Exception ex)
+    {
+        stderr.writeln(ex.msg);
+    }
 }
