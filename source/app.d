@@ -1,4 +1,4 @@
-module pseudo3d.app;
+module ndimensions.app;
 
 import std.stdio;
 
@@ -6,12 +6,14 @@ import core.time;
 
 import Dgame.Graphic.Color,
 
+       Dgame.Math.Vector2,
+
        Dgame.System.Keyboard,
 
        Dgame.Window.Event,
        Dgame.Window.Window;
 
-import pseudo3d.engine;
+import ndimensions.engine;
 
 ///
 struct App
@@ -59,17 +61,17 @@ private:
 
 public:
     ///
-    void run()
+    void run(in Vector2i winSize)
     {
-        _window = Window(1600, 900, "N-Dimensions");
+        _window = Window(winSize.x, winSize.y, "N-Dimensions");
         _window.setClearColor(Color4b.Black);
 
-        _engine.initialize();
+        _engine = Engine(winSize);
 
         _running = true;
 
-        MonoTime clock;
-        auto start = clock.currTime;
+        const MonoTime clock;
+        const auto start = clock.currTime;
         auto prev = clock.currTime - start;
 
         while (_running)
@@ -91,7 +93,7 @@ void main()
     App app;
     try
     {
-        app.run;
+        app.run(Vector2i(1600, 900));
     }
     catch (Exception ex)
     {

@@ -1,4 +1,4 @@
-module pseudo3d.math;
+module ndimensions.math;
 
 import std.traits : isNumeric;
 
